@@ -32,3 +32,12 @@ jobs:
     
     - name: Run tests with Maven
       run: mvn -B test --file ./aaa/pom.xml
+      
+    - name: Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Maven Tests
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+        fail-on-error: true
